@@ -1,11 +1,13 @@
 FROM node:20-alpine
 
-# Instala git e bash (muitas libs do expo usam git)
-RUN apk add --no-cache git bash
+# Ferramentas necessárias
+RUN apk add --no-cache git bash python3 make g++
 
-# Instala Expo CLI global
-RUN npm install -g expo-cli
+# Diretório de trabalho dentro do container
+WORKDIR /app/food
 
-WORKDIR /app
-
+# Expor as portas que o Expo usa
 EXPOSE 19000 19001 19002
+
+# Comando padrão: inicia o Expo
+CMD ["npx", "expo", "start", "--tunnel"]
