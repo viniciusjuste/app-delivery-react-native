@@ -1,11 +1,10 @@
 services:
   expo:
     build: .
-    ports:
-      - "19000:19000"
-      - "19001:19001"
-      - "19002:19002"
+    network_mode: "host" 
     volumes:
-      - ./food:/app/food  # monta a pasta do projeto no container
+      - ./food:/app/food
+    working_dir: /app/food
     stdin_open: true
     tty: true
+    command: npx expo start
