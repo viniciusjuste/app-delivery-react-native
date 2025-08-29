@@ -1,61 +1,51 @@
-Food App - Expo + Docker
+# Food App - Expo
 
-Este projeto é um app React Native usando Expo, rodando 100% em Docker.
-Dessa forma, você não precisa instalar expo-cli ou qualquer pacote global no seu computador.
-
----
-
-Pré-requisitos:
-- Docker instalado no computador
-- Node.js (opcional, apenas se quiser criar projetos via npx)
+Este é um projeto React Native usando **Expo**, que pode ser rodado diretamente em celular ou web.
 
 ---
 
-Estrutura:
-- food/        -> pasta do projeto Expo
-- Dockerfile   -> define a imagem do container
-- docker-compose.yml -> configura o container do Expo
+## Pré-requisitos
+
+* Node.js instalado (opcional, apenas se for criar novos projetos)
+* Expo Go no celular (Android ou iOS)
 
 ---
 
-Comandos principais:
+## Rodando o projeto
 
-1. Criar o projeto (opcional)
-   Se ainda não tiver criado, rode na sua máquina:
-   npx create-expo-app food
-   Isso cria a pasta food/ com o projeto inicial.
+1. Abra o terminal na pasta do projeto:
 
-2. Subir o container e rodar o app
-   docker compose up
-   - Isso inicia o container e o Metro Bundler.
-   - O QR Code aparece no terminal.
-   - Para abrir no navegador (interface web do Expo): http://localhost:19002
+```powershell
+cd C:\Users\Vinícius\Documents\_Cursos\app-delivery\food
+```
 
-3. Rodar o app dentro do container (recomendado para usar Expo Go)
-   - Entre no shell do container:
-     docker compose exec expo sh
-   - Navegue até a pasta do projeto:
-     cd /app/food
-   - Inicie o Expo usando tunnel (gera QR Code acessível externamente):
-     npx expo start --tunnel
-   - Você verá o QR Code no terminal para abrir no Expo Go.
+2. Inicie o Metro Bundler direto no modo Tunnel:
 
-4. Rodar em segundo plano (detach)
-   docker compose up -d
-   - Para ver logs e QR Code:
-     docker compose logs -f
+```powershell
+npx expo start --tunnel
+```
 
-5. Parar o container
-   docker compose down
+3. Escaneie o QR Code no **Expo Go** do seu celular.
+
+   * Funciona mesmo que o celular e o PC não estejam na mesma rede.
+
+4. Alternativamente, você pode rodar na web:
+
+```powershell
+npx expo start
+```
+
+* Pressione `w` para abrir no navegador.
 
 ---
 
-Observações:
-- Todo o ambiente do Expo está isolado no Docker.
-- Nenhum pacote global foi instalado na sua máquina.
-- Para adicionar dependências ao projeto dentro do container:
-   docker compose exec expo sh
-   cd /app/food
-   npm install <pacote>
+## Dicas
 
-Agora você tem um ambiente limpo e portátil, pronto para rodar o app em qualquer máquina com Docker.
+* Para limpar cache:
+
+```powershell
+npx expo start -c
+```
+
+* O Tunnel evita problemas com **firewall ou rede** que bloqueiam LAN.
+
