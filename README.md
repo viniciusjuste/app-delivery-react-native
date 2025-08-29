@@ -21,22 +21,31 @@ Estrutura:
 Comandos principais:
 
 1. Criar o projeto (opcional)
-   Se ainda não tiver criado, rode:
+   Se ainda não tiver criado, rode na sua máquina:
    npx create-expo-app food
    Isso cria a pasta food/ com o projeto inicial.
 
 2. Subir o container e rodar o app
    docker compose up
-   - Inicia o Metro Bundler dentro do container.
+   - Isso inicia o container e o Metro Bundler.
    - O QR Code aparece no terminal.
    - Para abrir no navegador (interface web do Expo): http://localhost:19002
 
-3. Rodar em segundo plano (detach)
+3. Rodar o app dentro do container (recomendado para usar Expo Go)
+   - Entre no shell do container:
+     docker compose exec expo sh
+   - Navegue até a pasta do projeto:
+     cd /app/food
+   - Inicie o Expo usando tunnel (gera QR Code acessível externamente):
+     npx expo start --tunnel
+   - Você verá o QR Code no terminal para abrir no Expo Go.
+
+4. Rodar em segundo plano (detach)
    docker compose up -d
    - Para ver logs e QR Code:
      docker compose logs -f
 
-4. Parar o container
+5. Parar o container
    docker compose down
 
 ---
